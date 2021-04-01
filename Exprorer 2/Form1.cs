@@ -81,24 +81,32 @@ namespace Exprorer_2
             if (listView.SelectedItems[0] == null) { return; }
             if (Path.GetExtension(listView.SelectedItems[0].Text) != "")
             {
-                Process.Start(Path.Combine(textBox.Text, listView.SelectedItems[0].Text));
+                Process.Start(Path.Combine(textBox.Text, listView.SelectedItems[0].Text));           
             }
             else
             {
-                if (listView.SelectedItems[0].Text == "return")
+                if (textBox.Text == "Books")
                 {
-                    try
-                    {
-                        textBox.Text = GetParentPath(textBox.Text);
-                        ExpandDirectory(listView, textBox.Text);
-                    }
-                    catch (IndexOutOfRangeException) { PrintDrives(listView, textBox); }
+                    string book_label = listView.SelectedItems[0].SubItems[3].Text;
+                    Process.Start(book_label);
                 }
                 else
                 {
-                    textBox.Text = (textBox.Text == "") ? listView.SelectedItems[0].Text : Path.Combine(textBox.Text, listView.SelectedItems[0].Text);
-                    ExpandDirectory(listView, textBox.Text);
-                }
+                    if (listView.SelectedItems[0].Text == "return")
+                    {
+                        try
+                        {
+                            textBox.Text = GetParentPath(textBox.Text);
+                            ExpandDirectory(listView, textBox.Text);
+                        }
+                        catch (IndexOutOfRangeException) { PrintDrives(listView, textBox); }
+                    }
+                    else
+                    {
+                        textBox.Text = (textBox.Text == "") ? listView.SelectedItems[0].Text : Path.Combine(textBox.Text, listView.SelectedItems[0].Text);
+                        ExpandDirectory(listView, textBox.Text);
+                    }
+                }              
                 FocusPath.Text = textBox.Text;
             }
         }
@@ -395,7 +403,6 @@ namespace Exprorer_2
         {
             this.Enabled = false;
             SignInForm signInForm = new SignInForm();
-            DialogResult dialogResult = signInForm.ShowDialog();
             User authorized_user = signInForm.GetUser();
             if (authorized_user != null)
             {
@@ -422,6 +429,52 @@ namespace Exprorer_2
             this.Hide();
             (new Form1()).ShowDialog();
             this.Close();
+        }
+
+        private void FindBookButton_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            FindBookForm findBookForm = new FindBookForm();
+            DialogResult dialogResult = findBookForm.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                string query = findBookForm.GetQuery();
+                int books_cnt = findBookForm.GetBooksCnt();
+                CollectBooks(query, books_cnt);
+            }          
+            this.Enabled = true;
+        }
+        private void CollectBooks(string query, int books_cnt)
+        {
+            int search_page = 1;
+            List<Book> books = new List<Book>();
+            List<Book> new_books = new List<Book>();
+            new_books.Add(new Book());
+            while (new_books.Count > 0 && books_cnt > 0)
+            {
+                new_books = Parcer.GetBooksFromThePage($"https://www.packtpub.com/catalogsearch/result/?q={query}&released=Available&page={search_page}", books_cnt);
+                books_cnt -= new_books.Count;
+                books.AddRange(new_books);
+                search_page++;
+            }
+            ShowBooks(books);
+        }
+        private void ShowBooks(List<Book> books)
+        {
+            ListView listView = left_focused ? LeftListView : RightListView;
+            TextBox textBox = left_focused ? LeftFullPath : RightFullPath;
+
+            textBox.Text = "Books";
+            listView.Items.Clear();
+            listView.Columns.Clear();
+            listView.Columns.Add("label");
+            listView.Columns.Add("date");
+            listView.Columns.Add("price");
+
+            foreach (Book book in books)
+            {
+                listView.Items.Add(new ListViewItem(new string[] { book.label, $"{book.date.Month} {book.date.Year}", $"${book.price}", book.href }));
+            }
         }
     }
 }

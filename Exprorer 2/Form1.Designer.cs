@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
             this.MoveButton = new System.Windows.Forms.Button();
             this.CompressButton = new System.Windows.Forms.Button();
             this.RenameButton = new System.Windows.Forms.Button();
@@ -59,6 +59,7 @@
             this.SignUpButton = new System.Windows.Forms.Button();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
+            this.FindBookButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.LeftGroup.SuspendLayout();
             this.RightGroup.SuspendLayout();
@@ -71,7 +72,7 @@
             this.MoveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.MoveButton.BackColor = System.Drawing.SystemColors.Control;
             this.MoveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.MoveButton.Location = new System.Drawing.Point(493, 11);
+            this.MoveButton.Location = new System.Drawing.Point(438, 11);
             this.MoveButton.Margin = new System.Windows.Forms.Padding(0);
             this.MoveButton.Name = "MoveButton";
             this.MoveButton.Size = new System.Drawing.Size(146, 27);
@@ -85,7 +86,7 @@
             this.CompressButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CompressButton.BackColor = System.Drawing.SystemColors.Control;
             this.CompressButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CompressButton.Location = new System.Drawing.Point(55, 11);
+            this.CompressButton.Location = new System.Drawing.Point(0, 11);
             this.CompressButton.Margin = new System.Windows.Forms.Padding(0);
             this.CompressButton.Name = "CompressButton";
             this.CompressButton.Size = new System.Drawing.Size(146, 27);
@@ -99,7 +100,7 @@
             this.RenameButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.RenameButton.BackColor = System.Drawing.SystemColors.Control;
             this.RenameButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RenameButton.Location = new System.Drawing.Point(201, 11);
+            this.RenameButton.Location = new System.Drawing.Point(146, 11);
             this.RenameButton.Margin = new System.Windows.Forms.Padding(0);
             this.RenameButton.Name = "RenameButton";
             this.RenameButton.Size = new System.Drawing.Size(146, 27);
@@ -113,7 +114,7 @@
             this.CopyButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CopyButton.BackColor = System.Drawing.SystemColors.Control;
             this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CopyButton.Location = new System.Drawing.Point(347, 11);
+            this.CopyButton.Location = new System.Drawing.Point(292, 11);
             this.CopyButton.Margin = new System.Windows.Forms.Padding(0);
             this.CopyButton.Name = "CopyButton";
             this.CopyButton.Size = new System.Drawing.Size(146, 27);
@@ -127,7 +128,7 @@
             this.CreateNewFolderButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CreateNewFolderButton.BackColor = System.Drawing.SystemColors.Control;
             this.CreateNewFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CreateNewFolderButton.Location = new System.Drawing.Point(639, 11);
+            this.CreateNewFolderButton.Location = new System.Drawing.Point(584, 11);
             this.CreateNewFolderButton.Margin = new System.Windows.Forms.Padding(0);
             this.CreateNewFolderButton.Name = "CreateNewFolderButton";
             this.CreateNewFolderButton.Size = new System.Drawing.Size(146, 27);
@@ -141,7 +142,7 @@
             this.DeleteButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.DeleteButton.BackColor = System.Drawing.SystemColors.Control;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DeleteButton.Location = new System.Drawing.Point(785, 11);
+            this.DeleteButton.Location = new System.Drawing.Point(730, 11);
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(0);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(146, 27);
@@ -155,7 +156,7 @@
             this.ExitButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ExitButton.BackColor = System.Drawing.SystemColors.Control;
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ExitButton.Location = new System.Drawing.Point(931, 11);
+            this.ExitButton.Location = new System.Drawing.Point(1022, 11);
             this.ExitButton.Margin = new System.Windows.Forms.Padding(0);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(146, 27);
@@ -176,7 +177,7 @@
             this.LeftListDateColumn});
             this.LeftListView.HideSelection = false;
             this.LeftListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.LeftListView.Location = new System.Drawing.Point(6, 51);
             this.LeftListView.Name = "LeftListView";
             this.LeftListView.Size = new System.Drawing.Size(532, 537);
@@ -206,6 +207,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.FindBookButton);
             this.groupBox1.Controls.Add(this.CompressButton);
             this.groupBox1.Controls.Add(this.RenameButton);
             this.groupBox1.Controls.Add(this.ExitButton);
@@ -214,9 +216,9 @@
             this.groupBox1.Controls.Add(this.MoveButton);
             this.groupBox1.Controls.Add(this.CreateNewFolderButton);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 645);
+            this.groupBox1.Location = new System.Drawing.Point(0, 655);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1125, 38);
+            this.groupBox1.Size = new System.Drawing.Size(1188, 38);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -316,9 +318,9 @@
             this.groupBox4.Controls.Add(this.textBox1);
             this.groupBox4.Controls.Add(this.FocusPath);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox4.Location = new System.Drawing.Point(0, 617);
+            this.groupBox4.Location = new System.Drawing.Point(0, 627);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1125, 28);
+            this.groupBox4.Size = new System.Drawing.Size(1188, 28);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
@@ -374,11 +376,25 @@
             this.UserNameLabel.Text = "label3";
             this.UserNameLabel.Visible = false;
             // 
+            // FindBookButton
+            // 
+            this.FindBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.FindBookButton.BackColor = System.Drawing.SystemColors.Control;
+            this.FindBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FindBookButton.Location = new System.Drawing.Point(876, 11);
+            this.FindBookButton.Margin = new System.Windows.Forms.Padding(0);
+            this.FindBookButton.Name = "FindBookButton";
+            this.FindBookButton.Size = new System.Drawing.Size(146, 27);
+            this.FindBookButton.TabIndex = 10;
+            this.FindBookButton.Text = "F9 Find book";
+            this.FindBookButton.UseVisualStyleBackColor = false;
+            this.FindBookButton.Click += new System.EventHandler(this.FindBookButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1125, 683);
+            this.ClientSize = new System.Drawing.Size(1188, 693);
             this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.SignUpInGroup);
@@ -434,6 +450,7 @@
         private System.Windows.Forms.Button SignUpButton;
         private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.Label UserNameLabel;
+        private System.Windows.Forms.Button FindBookButton;
     }
 }
 
