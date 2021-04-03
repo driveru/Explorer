@@ -67,6 +67,10 @@
     <Compile Include="InputNewName.Designer.cs">
       <DependentUpon>InputNewName.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListViewColumnComparer.cs" />
+    <Compile Include="ListViewDateColumnComparer.cs" />
+    <Compile Include="ListViewIntColumnComparer.cs" />
+    <Compile Include="ListViewTextColumnComparer.cs" />
     <Compile Include="Parcer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

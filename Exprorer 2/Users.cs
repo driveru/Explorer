@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Exprorer_2
 {
@@ -27,6 +29,16 @@ namespace Exprorer_2
                 throw new Exception("User with same name already exists.");
 
             Add(new User(login, password));
+        }
+        [OnSerialized]
+        private void PrintSuccessMessage(StreamingContext context)
+        {
+            MessageBox.Show("You signed up successfully. Now you'll try to sign in !");
+        }
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            MessageBox.Show("Users list successfully restored !");
         }
     }
 }

@@ -42,6 +42,7 @@
             this.LeftListSizeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftListDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FindBookButton = new System.Windows.Forms.Button();
             this.LeftGroup = new System.Windows.Forms.GroupBox();
             this.LeftFullPath = new System.Windows.Forms.TextBox();
             this.RightGroup = new System.Windows.Forms.GroupBox();
@@ -54,12 +55,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.FocusPath = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.BackToExplorerButton = new System.Windows.Forms.Button();
             this.SignInButton = new System.Windows.Forms.Button();
             this.SignUpInGroup = new System.Windows.Forms.GroupBox();
             this.SignUpButton = new System.Windows.Forms.Button();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
-            this.FindBookButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.LeftGroup.SuspendLayout();
             this.RightGroup.SuspendLayout();
@@ -184,6 +185,7 @@
             this.LeftListView.TabIndex = 10;
             this.LeftListView.UseCompatibleStateImageBehavior = false;
             this.LeftListView.View = System.Windows.Forms.View.Details;
+            this.LeftListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.LeftListView_ColumnClick);
             this.LeftListView.SelectedIndexChanged += new System.EventHandler(this.LeftListView_SelectedIndexChanged);
             this.LeftListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LeftListView_MouseDoubleClick);
             // 
@@ -223,6 +225,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // FindBookButton
+            // 
+            this.FindBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.FindBookButton.BackColor = System.Drawing.SystemColors.Control;
+            this.FindBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.FindBookButton.Location = new System.Drawing.Point(876, 11);
+            this.FindBookButton.Margin = new System.Windows.Forms.Padding(0);
+            this.FindBookButton.Name = "FindBookButton";
+            this.FindBookButton.Size = new System.Drawing.Size(146, 27);
+            this.FindBookButton.TabIndex = 10;
+            this.FindBookButton.Text = "F9 Find book";
+            this.FindBookButton.UseVisualStyleBackColor = false;
+            this.FindBookButton.Click += new System.EventHandler(this.FindBookButton_Click);
+            // 
             // LeftGroup
             // 
             this.LeftGroup.Controls.Add(this.LeftFullPath);
@@ -248,7 +264,7 @@
             this.RightGroup.Controls.Add(this.RightListView);
             this.RightGroup.Location = new System.Drawing.Point(594, 23);
             this.RightGroup.Name = "RightGroup";
-            this.RightGroup.Size = new System.Drawing.Size(531, 594);
+            this.RightGroup.Size = new System.Drawing.Size(574, 594);
             this.RightGroup.TabIndex = 13;
             this.RightGroup.TabStop = false;
             this.RightGroup.Enter += new System.EventHandler(this.RightGroup_Enter);
@@ -258,7 +274,7 @@
             // 
             this.RightFullPath.Location = new System.Drawing.Point(0, 23);
             this.RightFullPath.Name = "RightFullPath";
-            this.RightFullPath.Size = new System.Drawing.Size(531, 22);
+            this.RightFullPath.Size = new System.Drawing.Size(574, 22);
             this.RightFullPath.TabIndex = 13;
             // 
             // RightListView
@@ -274,10 +290,11 @@
             this.RightListView.HideSelection = false;
             this.RightListView.Location = new System.Drawing.Point(0, 51);
             this.RightListView.Name = "RightListView";
-            this.RightListView.Size = new System.Drawing.Size(531, 537);
+            this.RightListView.Size = new System.Drawing.Size(574, 537);
             this.RightListView.TabIndex = 11;
             this.RightListView.UseCompatibleStateImageBehavior = false;
             this.RightListView.View = System.Windows.Forms.View.Details;
+            this.RightListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.RightListView_ColumnClick);
             this.RightListView.SelectedIndexChanged += new System.EventHandler(this.RightListView_SelectedIndexChanged);
             this.RightListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RightListView_MouseDoubleClick);
             // 
@@ -302,7 +319,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(594, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(525, 22);
+            this.textBox1.Size = new System.Drawing.Size(574, 22);
             this.textBox1.TabIndex = 14;
             // 
             // FocusPath
@@ -315,6 +332,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.BackToExplorerButton);
             this.groupBox4.Controls.Add(this.textBox1);
             this.groupBox4.Controls.Add(this.FocusPath);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -324,6 +342,17 @@
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "groupBox4";
+            // 
+            // BackToExplorerButton
+            // 
+            this.BackToExplorerButton.Location = new System.Drawing.Point(0, 6);
+            this.BackToExplorerButton.Name = "BackToExplorerButton";
+            this.BackToExplorerButton.Size = new System.Drawing.Size(128, 23);
+            this.BackToExplorerButton.TabIndex = 16;
+            this.BackToExplorerButton.Text = "Back to explorer";
+            this.BackToExplorerButton.UseVisualStyleBackColor = true;
+            this.BackToExplorerButton.Visible = false;
+            this.BackToExplorerButton.Click += new System.EventHandler(this.BackToExplorerButton_Click);
             // 
             // SignInButton
             // 
@@ -375,20 +404,6 @@
             this.UserNameLabel.TabIndex = 18;
             this.UserNameLabel.Text = "label3";
             this.UserNameLabel.Visible = false;
-            // 
-            // FindBookButton
-            // 
-            this.FindBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.FindBookButton.BackColor = System.Drawing.SystemColors.Control;
-            this.FindBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.FindBookButton.Location = new System.Drawing.Point(876, 11);
-            this.FindBookButton.Margin = new System.Windows.Forms.Padding(0);
-            this.FindBookButton.Name = "FindBookButton";
-            this.FindBookButton.Size = new System.Drawing.Size(146, 27);
-            this.FindBookButton.TabIndex = 10;
-            this.FindBookButton.Text = "F9 Find book";
-            this.FindBookButton.UseVisualStyleBackColor = false;
-            this.FindBookButton.Click += new System.EventHandler(this.FindBookButton_Click);
             // 
             // Form1
             // 
@@ -451,6 +466,7 @@
         private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.Label UserNameLabel;
         private System.Windows.Forms.Button FindBookButton;
+        private System.Windows.Forms.Button BackToExplorerButton;
     }
 }
 

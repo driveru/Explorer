@@ -17,7 +17,12 @@ namespace Exprorer_2
             this.label = label;
             this.href = href;
             this.short_description = short_desc;
-            string[] month_and_year = date.Split(' ');
+            string[] month_and_year = date.Split();
+            while (month_and_year[0] == "")
+            {
+                for (int i = 1; i < month_and_year.Length; i++)
+                    month_and_year[i - 1] = month_and_year[i];
+            }
             int year = int.Parse(month_and_year[1]);
             int month = Array.IndexOf(months, month_and_year[0]) + 1;
             this.date = new DateTime(year, month, 1);

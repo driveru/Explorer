@@ -27,13 +27,6 @@ namespace Exprorer_2
                     users = (Users)new BinaryFormatter().Deserialize(fs);
             }
             catch (Exception) { users = new Users(); }
-            /*
-            if (File.Exists(users_data_path))
-                using (var fs = File.OpenRead(users_data_path))
-                    users = (Users)new BinaryFormatter().Deserialize(fs);
-            else
-                users = new Users();
-            */
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)
@@ -46,7 +39,7 @@ namespace Exprorer_2
                 using (var fs = File.OpenWrite(users_data_path))
                     new BinaryFormatter().Serialize(fs, users);
 
-                MessageBox.Show("You signed up successfully. Now you'll try to sign in !");
+               
             }
             else 
             { 

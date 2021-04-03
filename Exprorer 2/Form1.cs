@@ -41,21 +41,23 @@ namespace Exprorer_2
             try
             {
                 CurrentListView.Items.Clear();
+                CurrentListView.ListViewItemSorter = null;
                 DirectoryInfo di = new DirectoryInfo(path); 
                 CurrentListView.Items.Add(new ListViewItem(new string[] { "return" }));
                 foreach (DirectoryInfo dir in di.EnumerateDirectories())
                 {
-                    CurrentListView.Items.Add(new ListViewItem(new string[] { dir.Name, dir.Extension, "", dir.CreationTime.ToString()}));
+                    CurrentListView.Items.Add(new ListViewItem(new string[] { dir.Name, dir.Extension, "", dir.CreationTime.ToShortDateString()}));
                 }
                 foreach (FileInfo file in di.EnumerateFiles())
                 {
-                    CurrentListView.Items.Add(new ListViewItem(new string[] { file.Name, file.Extension, file.Length.ToString() + "bytes", file.CreationTime.ToString()}));
+                    CurrentListView.Items.Add(new ListViewItem(new string[] { file.Name, file.Extension, file.Length.ToString() + "bytes", file.CreationTime.ToShortDateString()}));
                 }
                 selected_item = null;
             }
-            catch (IOException exc)
+            catch (IOException)
             {
-                MessageBox.Show(exc.Message);
+                TextBox textBox = (CurrentListView == LeftListView) ? LeftFullPath : RightFullPath;
+                PrintDrives(CurrentListView, textBox);
             }
             catch (UnauthorizedAccessException exc)
             {
@@ -230,8 +232,12 @@ namespace Exprorer_2
         }
         private void UpdateLists()
         {
-            ExpandDirectory(LeftListView, LeftFullPath.Text);
-            ExpandDirectory(RightListView, RightFullPath.Text);
+            if (RightFullPath.Text != "Books")
+                ExpandDirectory(RightListView, RightFullPath.Text);
+
+            if (LeftFullPath.Text != "Books")
+                ExpandDirectory(LeftListView, LeftFullPath.Text);
+            
         }
 
         private void MoveButton_Click(object sender, EventArgs e)
@@ -403,6 +409,7 @@ namespace Exprorer_2
         {
             this.Enabled = false;
             SignInForm signInForm = new SignInForm();
+            signInForm.ShowDialog();
             User authorized_user = signInForm.GetUser();
             if (authorized_user != null)
             {
@@ -434,6 +441,7 @@ namespace Exprorer_2
         private void FindBookButton_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
+            BackToExplorerButton.Visible = true;
             FindBookForm findBookForm = new FindBookForm();
             DialogResult dialogResult = findBookForm.ShowDialog();
             if (dialogResult == DialogResult.OK)
@@ -467,13 +475,48 @@ namespace Exprorer_2
             textBox.Text = "Books";
             listView.Items.Clear();
             listView.Columns.Clear();
-            listView.Columns.Add("label");
-            listView.Columns.Add("date");
-            listView.Columns.Add("price");
+            listView.Columns.Add("Label");
+            listView.Columns.Add("Date");
+            listView.Columns.Add("Price");
 
             foreach (Book book in books)
             {
-                listView.Items.Add(new ListViewItem(new string[] { book.label, $"{book.date.Month} {book.date.Year}", $"${book.price}", book.href }));
+                listView.Items.Add(new ListViewItem(new string[] { book.label, $"{book.date.Month}.{book.date.Year}", $"${book.price}", book.href }));
+            }
+        } 
+
+        private void BackToExplorerButton_Click(object sender, EventArgs e)
+        {
+            if (LeftFullPath.Text == "Books")
+                LeftFullPath.Text = "";
+            if (RightFullPath.Text == "Books")
+                RightFullPath.Text = "";
+            UpdateLists();   
+            BackToExplorerButton.Visible = false;
+        }
+
+        private void RightListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ColumnSort(RightListView, e.Column);
+        }
+
+        private void LeftListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ColumnSort(LeftListView, e.Column);
+        }
+        private void ColumnSort(ListView listView, int column_index)
+        {
+            if (listView.Columns[column_index].Text == "Size" || listView.Columns[column_index].Text == "Price")
+            {
+                listView.ListViewItemSorter = new ListViewDoubleColumnComparer(column_index);
+            }
+            else if (listView.Columns[column_index].Text == "Date")
+            {
+                listView.ListViewItemSorter = new ListViewDateColumnComparer(column_index);
+            }
+            else
+            {
+                listView.ListViewItemSorter = new ListViewTextColumnComparer(column_index);
             }
         }
     }
