@@ -14,7 +14,7 @@ namespace Exprorer_2
 {
     public partial class SignUpForm : Form
     {
-        private Users users;
+        private static Users users;
         private string users_data_path;
         public SignUpForm()
         {
@@ -37,9 +37,7 @@ namespace Exprorer_2
                 users.SignUp(LoginTextBox.Text, PasswordTextBox.Text);
                 //сохраняем юзеров в файл
                 using (var fs = File.OpenWrite(users_data_path))
-                    new BinaryFormatter().Serialize(fs, users);
-
-               
+                    new BinaryFormatter().Serialize(fs, users);             
             }
             else 
             { 

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
             this.MoveButton = new System.Windows.Forms.Button();
             this.CompressButton = new System.Windows.Forms.Button();
             this.RenameButton = new System.Windows.Forms.Button();
@@ -61,6 +61,7 @@
             this.SignUpButton = new System.Windows.Forms.Button();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
+            this.SettingsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.LeftGroup.SuspendLayout();
             this.RightGroup.SuspendLayout();
@@ -178,7 +179,7 @@
             this.LeftListDateColumn});
             this.LeftListView.HideSelection = false;
             this.LeftListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.LeftListView.Location = new System.Drawing.Point(6, 51);
             this.LeftListView.Name = "LeftListView";
             this.LeftListView.Size = new System.Drawing.Size(532, 537);
@@ -405,11 +406,23 @@
             this.UserNameLabel.Text = "label3";
             this.UserNameLabel.Visible = false;
             // 
+            // SettingsButton
+            // 
+            this.SettingsButton.Location = new System.Drawing.Point(962, 0);
+            this.SettingsButton.Name = "SettingsButton";
+            this.SettingsButton.Size = new System.Drawing.Size(83, 28);
+            this.SettingsButton.TabIndex = 19;
+            this.SettingsButton.Text = "Settings";
+            this.SettingsButton.UseVisualStyleBackColor = true;
+            this.SettingsButton.Visible = false;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1188, 693);
+            this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.SignUpInGroup);
@@ -467,6 +480,7 @@
         private System.Windows.Forms.Label UserNameLabel;
         private System.Windows.Forms.Button FindBookButton;
         private System.Windows.Forms.Button BackToExplorerButton;
+        private System.Windows.Forms.Button SettingsButton;
     }
 }
 

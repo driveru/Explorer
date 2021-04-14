@@ -7,6 +7,7 @@ namespace Exprorer_2
     class Book
     {
         static string[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        static string[] short_months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         public string label { get; private set; }
         public string short_description { get; private set; }
         public string href { get; private set; }
@@ -24,7 +25,7 @@ namespace Exprorer_2
                     month_and_year[i - 1] = month_and_year[i];
             }
             int year = int.Parse(month_and_year[1]);
-            int month = Array.IndexOf(months, month_and_year[0]) + 1;
+            int month = Array.IndexOf(short_months, month_and_year[0]) + 1;
             this.date = new DateTime(year, month, 1);
             this.price = double.Parse(price.Replace('.', ','));
         }

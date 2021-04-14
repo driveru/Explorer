@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO.Compression;
 using Microsoft.VisualBasic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Exprorer_2
 {
@@ -18,6 +19,7 @@ namespace Exprorer_2
     {
         static private bool left_focused;
         static private ListViewItem selected_item;
+        private User user;
         public Form1()
         {
             InitializeComponent();
@@ -25,13 +27,15 @@ namespace Exprorer_2
             PrintDrives(RightListView, RightFullPath);
         }
         public Form1(User user)
-        {
+        {           
             InitializeComponent();
+            this.user = user;
             PrintDrives(LeftListView, LeftFullPath);
             PrintDrives(RightListView, RightFullPath);
             this.Text = user.explorer_label;
             SignUpInGroup.Visible = false;
             LogOutButton.Visible = true;
+            SettingsButton.Visible = true;
             UserNameLabel.Visible = true;
             UserNameLabel.Text = $"Hey, {user.login} !";
         }
@@ -116,6 +120,12 @@ namespace Exprorer_2
         {
             listView.Items.Clear();
             textBox.Text = "";
+            listView.Columns.Clear();
+            listView.Columns.Add("Name");
+            listView.Columns.Add("Ext");
+            listView.Columns.Add("Size");
+            listView.Columns.Add("Date");
+
             DriveInfo[] drives = DriveInfo.GetDrives();
             foreach (DriveInfo drive in drives)
             {
@@ -447,6 +457,7 @@ namespace Exprorer_2
             if (dialogResult == DialogResult.OK)
             {
                 string query = findBookForm.GetQuery();
+                query.Replace("#", "%23");
                 int books_cnt = findBookForm.GetBooksCnt();
                 CollectBooks(query, books_cnt);
             }          
@@ -518,6 +529,27 @@ namespace Exprorer_2
             {
                 listView.ListViewItemSorter = new ListViewTextColumnComparer(column_index);
             }
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            UserSettingsForm settingsForm = new UserSettingsForm(user);
+            if (settingsForm.ShowDialog() == DialogResult.OK)
+            {
+                this.Text = user.explorer_label;
+                string users_data_path = Directory.GetCurrentDirectory();
+                users_data_path = Path.Combine(users_data_path, "users.dat");
+                Users users = new Users();
+                if (File.Exists(users_data_path))
+                    using (var fs = File.OpenRead(users_data_path))
+                        users = (Users)new BinaryFormatter().Deserialize(fs);
+
+                User data_user = users.FirstOrDefault(u => u.login == this.user.login);
+                data_user.SetExplorerLabel(user.explorer_label);
+
+                using (var fs = File.OpenWrite(users_data_path))
+                    new BinaryFormatter().Serialize(fs, users);
+            }              
         }
     }
 }

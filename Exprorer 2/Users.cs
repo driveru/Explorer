@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,6 +31,13 @@ namespace Exprorer_2
                 throw new Exception("User with same name already exists.");
 
             Add(new User(login, password));
+        }
+        static public void SaveUsers(Users users)
+        {
+            string users_data_path = Directory.GetCurrentDirectory();
+            users_data_path = Path.Combine(users_data_path, "users.dat");
+            using (var fs = File.OpenWrite(users_data_path))
+                new BinaryFormatter().Serialize(fs, users);
         }
         [OnSerialized]
         private void PrintSuccessMessage(StreamingContext context)
