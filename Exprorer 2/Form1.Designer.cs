@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MoveButton = new System.Windows.Forms.Button();
             this.CompressButton = new System.Windows.Forms.Button();
             this.RenameButton = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.LeftListExtensionColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftListSizeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftListDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FooterGroup = new System.Windows.Forms.GroupBox();
             this.FindBookButton = new System.Windows.Forms.Button();
             this.LeftGroup = new System.Windows.Forms.GroupBox();
             this.LeftFullPath = new System.Windows.Forms.TextBox();
@@ -52,9 +53,9 @@
             this.RightListExtensionColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RightListSizeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RightListDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SearchKeyTexBox = new System.Windows.Forms.TextBox();
             this.FocusPath = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.SearchGroupBox = new System.Windows.Forms.GroupBox();
             this.BackToExplorerButton = new System.Windows.Forms.Button();
             this.SignInButton = new System.Windows.Forms.Button();
             this.SignUpInGroup = new System.Windows.Forms.GroupBox();
@@ -62,10 +63,11 @@
             this.LogOutButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
             this.SettingsButton = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.FooterGroup.SuspendLayout();
             this.LeftGroup.SuspendLayout();
             this.RightGroup.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.SearchGroupBox.SuspendLayout();
             this.SignUpInGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,7 +181,7 @@
             this.LeftListDateColumn});
             this.LeftListView.HideSelection = false;
             this.LeftListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.LeftListView.Location = new System.Drawing.Point(6, 51);
             this.LeftListView.Name = "LeftListView";
             this.LeftListView.Size = new System.Drawing.Size(532, 537);
@@ -208,23 +210,22 @@
             this.LeftListDateColumn.Text = "Date";
             this.LeftListDateColumn.Width = 51;
             // 
-            // groupBox1
+            // FooterGroup
             // 
-            this.groupBox1.Controls.Add(this.FindBookButton);
-            this.groupBox1.Controls.Add(this.CompressButton);
-            this.groupBox1.Controls.Add(this.RenameButton);
-            this.groupBox1.Controls.Add(this.ExitButton);
-            this.groupBox1.Controls.Add(this.CopyButton);
-            this.groupBox1.Controls.Add(this.DeleteButton);
-            this.groupBox1.Controls.Add(this.MoveButton);
-            this.groupBox1.Controls.Add(this.CreateNewFolderButton);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 655);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1188, 38);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.FooterGroup.Controls.Add(this.FindBookButton);
+            this.FooterGroup.Controls.Add(this.CompressButton);
+            this.FooterGroup.Controls.Add(this.RenameButton);
+            this.FooterGroup.Controls.Add(this.ExitButton);
+            this.FooterGroup.Controls.Add(this.CopyButton);
+            this.FooterGroup.Controls.Add(this.DeleteButton);
+            this.FooterGroup.Controls.Add(this.MoveButton);
+            this.FooterGroup.Controls.Add(this.CreateNewFolderButton);
+            this.FooterGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FooterGroup.Location = new System.Drawing.Point(0, 655);
+            this.FooterGroup.Name = "FooterGroup";
+            this.FooterGroup.Size = new System.Drawing.Size(1188, 38);
+            this.FooterGroup.TabIndex = 11;
+            this.FooterGroup.TabStop = false;
             // 
             // FindBookButton
             // 
@@ -316,12 +317,13 @@
             // 
             this.RightListDateColumn.Text = "Date";
             // 
-            // textBox1
+            // SearchKeyTexBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(594, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(574, 22);
-            this.textBox1.TabIndex = 14;
+            this.SearchKeyTexBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SearchKeyTexBox.Location = new System.Drawing.Point(594, 10);
+            this.SearchKeyTexBox.Name = "SearchKeyTexBox";
+            this.SearchKeyTexBox.Size = new System.Drawing.Size(553, 26);
+            this.SearchKeyTexBox.TabIndex = 14;
             // 
             // FocusPath
             // 
@@ -331,18 +333,18 @@
             this.FocusPath.Size = new System.Drawing.Size(0, 17);
             this.FocusPath.TabIndex = 15;
             // 
-            // groupBox4
+            // SearchGroupBox
             // 
-            this.groupBox4.Controls.Add(this.BackToExplorerButton);
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.FocusPath);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox4.Location = new System.Drawing.Point(0, 627);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1188, 28);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
+            this.SearchGroupBox.Controls.Add(this.SearchButton);
+            this.SearchGroupBox.Controls.Add(this.BackToExplorerButton);
+            this.SearchGroupBox.Controls.Add(this.SearchKeyTexBox);
+            this.SearchGroupBox.Controls.Add(this.FocusPath);
+            this.SearchGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.SearchGroupBox.Location = new System.Drawing.Point(0, 617);
+            this.SearchGroupBox.Name = "SearchGroupBox";
+            this.SearchGroupBox.Size = new System.Drawing.Size(1188, 38);
+            this.SearchGroupBox.TabIndex = 15;
+            this.SearchGroupBox.TabStop = false;
             // 
             // BackToExplorerButton
             // 
@@ -417,6 +419,17 @@
             this.SettingsButton.Visible = false;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
+            // SearchButton
+            // 
+            this.SearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SearchButton.BackgroundImage")));
+            this.SearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SearchButton.Location = new System.Drawing.Point(1153, 8);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(29, 30);
+            this.SearchButton.TabIndex = 17;
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -426,20 +439,20 @@
             this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.SignUpInGroup);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.SearchGroupBox);
             this.Controls.Add(this.RightGroup);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.FooterGroup);
             this.Controls.Add(this.LeftGroup);
             this.Name = "Form1";
             this.Text = "Form1";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.groupBox1.ResumeLayout(false);
+            this.FooterGroup.ResumeLayout(false);
             this.LeftGroup.ResumeLayout(false);
             this.LeftGroup.PerformLayout();
             this.RightGroup.ResumeLayout(false);
             this.RightGroup.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.SearchGroupBox.ResumeLayout(false);
+            this.SearchGroupBox.PerformLayout();
             this.SignUpInGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -460,7 +473,7 @@
         private System.Windows.Forms.ColumnHeader LeftListExtensionColumn;
         private System.Windows.Forms.ColumnHeader LeftListSizeColumn;
         private System.Windows.Forms.ColumnHeader LeftListDateColumn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox FooterGroup;
         private System.Windows.Forms.GroupBox LeftGroup;
         private System.Windows.Forms.GroupBox RightGroup;
         private System.Windows.Forms.ListView RightListView;
@@ -470,9 +483,9 @@
         private System.Windows.Forms.ColumnHeader RightListDateColumn;
         private System.Windows.Forms.TextBox LeftFullPath;
         private System.Windows.Forms.TextBox RightFullPath;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox SearchKeyTexBox;
         private System.Windows.Forms.Label FocusPath;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox SearchGroupBox;
         private System.Windows.Forms.Button SignInButton;
         private System.Windows.Forms.GroupBox SignUpInGroup;
         private System.Windows.Forms.Button SignUpButton;
@@ -481,6 +494,7 @@
         private System.Windows.Forms.Button FindBookButton;
         private System.Windows.Forms.Button BackToExplorerButton;
         private System.Windows.Forms.Button SettingsButton;
+        private System.Windows.Forms.Button SearchButton;
     }
 }
 

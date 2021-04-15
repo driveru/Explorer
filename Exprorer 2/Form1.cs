@@ -85,19 +85,38 @@ namespace Exprorer_2
         private void MouseDoubleCLickEvent(ListView listView, TextBox textBox)
         {
             if (listView.SelectedItems[0] == null) { return; }
-            if (Path.GetExtension(listView.SelectedItems[0].Text) != "")
+
+            if (textBox.Text == "Books")
             {
-                Process.Start(Path.Combine(textBox.Text, listView.SelectedItems[0].Text));           
+                string book_label = listView.SelectedItems[0].SubItems[3].Text;
+                Process.Start(book_label);
             }
-            else
+            else if (textBox.Text == "Search results")
             {
-                if (textBox.Text == "Books")
+                if (Path.GetExtension(listView.SelectedItems[0].Text) != "")
                 {
-                    string book_label = listView.SelectedItems[0].SubItems[3].Text;
-                    Process.Start(book_label);
+                    Process.Start(listView.SelectedItems[0].SubItems[1].Text);
                 }
                 else
                 {
+                    textBox.Text = GetParentPath(listView.SelectedItems[0].SubItems[1].Text);
+                    MouseDoubleCLickEvent(listView, textBox);
+                }
+            }
+            else
+            {
+                if (Path.GetExtension(listView.SelectedItems[0].Text) != "")
+                {
+                    Process.Start(Path.Combine(textBox.Text, listView.SelectedItems[0].Text));
+                }
+                else
+                {
+                    listView.Columns.Clear();
+                    listView.Columns.Add("Name");
+                    listView.Columns.Add("Ext");
+                    listView.Columns.Add("Size");
+                    listView.Columns.Add("Date");
+
                     if (listView.SelectedItems[0].Text == "return")
                     {
                         try
@@ -112,9 +131,10 @@ namespace Exprorer_2
                         textBox.Text = (textBox.Text == "") ? listView.SelectedItems[0].Text : Path.Combine(textBox.Text, listView.SelectedItems[0].Text);
                         ExpandDirectory(listView, textBox.Text);
                     }
-                }              
-                FocusPath.Text = textBox.Text;
+                    FocusPath.Text = textBox.Text;
+                }
             }
+            
         }
         private void PrintDrives(ListView listView, TextBox textBox)
         {
@@ -550,6 +570,38 @@ namespace Exprorer_2
                 using (var fs = File.OpenWrite(users_data_path))
                     new BinaryFormatter().Serialize(fs, users);
             }              
+        }
+        private void Search(string source_dir, string srch_key, bool out_list)
+        {
+            Task.Factory.StartNew(() => 
+            {
+                new SearchFiles(source_dir, srch_key, this, out_list).StartSearch();
+            });
+        }
+        public void PrintSearchResults(string file_path, bool out_list)
+        {
+            ListView listView = out_list ? LeftListView : RightListView;
+            this.Invoke((Action)delegate
+                {
+                    lock (RightGroup)
+                    {
+                        listView.Items.Add(new ListViewItem(new string[] { Path.GetFileName(file_path), file_path}));
+                    }
+                });
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            ListView listView = left_focused ? LeftListView : RightListView;
+            TextBox textBox = left_focused ? LeftFullPath : RightFullPath;
+            
+            listView.Columns.Clear();
+            listView.Columns.Add("Name");
+            listView.Columns.Add("Full path");
+            textBox.Text = "Search results";
+            listView.Items.Clear();
+            
+            Search(FocusPath.Text, SearchKeyTexBox.Text, left_focused);
         }
     }
 }
