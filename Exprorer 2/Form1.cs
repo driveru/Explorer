@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.IO.Compression;
 using Microsoft.VisualBasic;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 
 namespace Exprorer_2
 {
@@ -20,6 +21,10 @@ namespace Exprorer_2
         static private bool left_focused;
         static private ListViewItem selected_item;
         private User user;
+        private CancellationTokenSource left_cancellation_src;
+        private CancellationTokenSource right_cancellation_src;
+        private CancellationTokenSource download_cancellation_src;
+
         public Form1()
         {
             InitializeComponent();
@@ -573,10 +578,21 @@ namespace Exprorer_2
         }
         private void Search(string source_dir, string srch_key, bool out_list)
         {
-            Task.Factory.StartNew(() => 
+            if (out_list)
+                left_cancellation_src = new CancellationTokenSource();
+            else
+                right_cancellation_src = new CancellationTokenSource();
+
+            CancellationTokenSource token_source = out_list ? left_cancellation_src : right_cancellation_src;
+            if (out_list)
+                LeftCancelSearchButton.Visible = true;
+            else
+                RightCancelSearchButton.Visible = true;
+
+            Task.Factory.StartNew(() =>
             {
-                new SearchFiles(source_dir, srch_key, this, out_list).StartSearch();
-            });
+                new SearchFiles(source_dir, srch_key, this, out_list, token_source).StartSearch();
+            }, token_source.Token);
         }
         public void PrintSearchResults(string file_path, bool out_list)
         {
@@ -602,6 +618,67 @@ namespace Exprorer_2
             listView.Items.Clear();
             
             Search(FocusPath.Text, SearchKeyTexBox.Text, left_focused);
+        }
+
+        private void DownloadButton_Click(object sender, EventArgs e)
+        {
+            if (FocusPath.Text == "" || SearchKeyTexBox.Text == "")
+                return;
+
+            CancelDownloadButton.Visible = true;
+            download_cancellation_src = new CancellationTokenSource();
+
+            Task.Factory.StartNew(() =>
+            {
+                new DownloadFile(SearchKeyTexBox.Text, FocusPath.Text, this, download_cancellation_src).StartDownload();
+            }, download_cancellation_src.Token);
+        }
+
+        private void RightCancelSearchButton_Click(object sender, EventArgs e)
+        {
+            right_cancellation_src.Cancel();
+        }
+        private void CancelDownloadButton_Click(object sender, EventArgs e)
+        {
+            download_cancellation_src.Cancel();
+        }
+
+        public void HideLeftCancelSearchButton()
+        {
+            this.Invoke((Action)delegate
+            {
+                lock (LeftCancelSearchButton)
+                {
+                    LeftCancelSearchButton.Visible = false;
+                    left_cancellation_src.Dispose();
+                }
+            });
+        }
+        public void HideRightCancelSearchButton()
+        {
+            this.Invoke((Action)delegate
+            {
+                lock (RightCancelSearchButton)
+                {
+                    RightCancelSearchButton.Visible = false;
+                    right_cancellation_src.Dispose();
+                }
+            });     
+        }
+
+        private void LeftCancelSearchButton_Click(object sender, EventArgs e)
+        {
+            left_cancellation_src.Cancel();
+        }
+        public void HideDownloadCancelButton()
+        {
+            this.Invoke((Action)delegate
+            {
+                lock (DownloadButton)
+                {
+                    CancelDownloadButton.Visible = false;
+                }
+            });
         }
     }
 }

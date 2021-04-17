@@ -45,8 +45,10 @@
             this.FooterGroup = new System.Windows.Forms.GroupBox();
             this.FindBookButton = new System.Windows.Forms.Button();
             this.LeftGroup = new System.Windows.Forms.GroupBox();
+            this.LeftCancelSearchButton = new System.Windows.Forms.Button();
             this.LeftFullPath = new System.Windows.Forms.TextBox();
             this.RightGroup = new System.Windows.Forms.GroupBox();
+            this.RightCancelSearchButton = new System.Windows.Forms.Button();
             this.RightFullPath = new System.Windows.Forms.TextBox();
             this.RightListView = new System.Windows.Forms.ListView();
             this.RightListNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,6 +58,9 @@
             this.SearchKeyTexBox = new System.Windows.Forms.TextBox();
             this.FocusPath = new System.Windows.Forms.Label();
             this.SearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.CancelDownloadButton = new System.Windows.Forms.Button();
+            this.DownloadButton = new System.Windows.Forms.Button();
+            this.SearchButton = new System.Windows.Forms.Button();
             this.BackToExplorerButton = new System.Windows.Forms.Button();
             this.SignInButton = new System.Windows.Forms.Button();
             this.SignUpInGroup = new System.Windows.Forms.GroupBox();
@@ -63,7 +68,6 @@
             this.LogOutButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
             this.SettingsButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
             this.FooterGroup.SuspendLayout();
             this.LeftGroup.SuspendLayout();
             this.RightGroup.SuspendLayout();
@@ -76,7 +80,7 @@
             this.MoveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.MoveButton.BackColor = System.Drawing.SystemColors.Control;
             this.MoveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.MoveButton.Location = new System.Drawing.Point(438, 11);
+            this.MoveButton.Location = new System.Drawing.Point(441, 11);
             this.MoveButton.Margin = new System.Windows.Forms.Padding(0);
             this.MoveButton.Name = "MoveButton";
             this.MoveButton.Size = new System.Drawing.Size(146, 27);
@@ -90,7 +94,7 @@
             this.CompressButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CompressButton.BackColor = System.Drawing.SystemColors.Control;
             this.CompressButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CompressButton.Location = new System.Drawing.Point(0, 11);
+            this.CompressButton.Location = new System.Drawing.Point(3, 11);
             this.CompressButton.Margin = new System.Windows.Forms.Padding(0);
             this.CompressButton.Name = "CompressButton";
             this.CompressButton.Size = new System.Drawing.Size(146, 27);
@@ -104,7 +108,7 @@
             this.RenameButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.RenameButton.BackColor = System.Drawing.SystemColors.Control;
             this.RenameButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RenameButton.Location = new System.Drawing.Point(146, 11);
+            this.RenameButton.Location = new System.Drawing.Point(149, 11);
             this.RenameButton.Margin = new System.Windows.Forms.Padding(0);
             this.RenameButton.Name = "RenameButton";
             this.RenameButton.Size = new System.Drawing.Size(146, 27);
@@ -118,7 +122,7 @@
             this.CopyButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CopyButton.BackColor = System.Drawing.SystemColors.Control;
             this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CopyButton.Location = new System.Drawing.Point(292, 11);
+            this.CopyButton.Location = new System.Drawing.Point(295, 11);
             this.CopyButton.Margin = new System.Windows.Forms.Padding(0);
             this.CopyButton.Name = "CopyButton";
             this.CopyButton.Size = new System.Drawing.Size(146, 27);
@@ -132,7 +136,7 @@
             this.CreateNewFolderButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CreateNewFolderButton.BackColor = System.Drawing.SystemColors.Control;
             this.CreateNewFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CreateNewFolderButton.Location = new System.Drawing.Point(584, 11);
+            this.CreateNewFolderButton.Location = new System.Drawing.Point(587, 11);
             this.CreateNewFolderButton.Margin = new System.Windows.Forms.Padding(0);
             this.CreateNewFolderButton.Name = "CreateNewFolderButton";
             this.CreateNewFolderButton.Size = new System.Drawing.Size(146, 27);
@@ -146,7 +150,7 @@
             this.DeleteButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.DeleteButton.BackColor = System.Drawing.SystemColors.Control;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DeleteButton.Location = new System.Drawing.Point(730, 11);
+            this.DeleteButton.Location = new System.Drawing.Point(733, 11);
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(0);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(146, 27);
@@ -160,7 +164,7 @@
             this.ExitButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ExitButton.BackColor = System.Drawing.SystemColors.Control;
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ExitButton.Location = new System.Drawing.Point(1022, 11);
+            this.ExitButton.Location = new System.Drawing.Point(1025, 11);
             this.ExitButton.Margin = new System.Windows.Forms.Padding(0);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(146, 27);
@@ -223,7 +227,7 @@
             this.FooterGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.FooterGroup.Location = new System.Drawing.Point(0, 655);
             this.FooterGroup.Name = "FooterGroup";
-            this.FooterGroup.Size = new System.Drawing.Size(1188, 38);
+            this.FooterGroup.Size = new System.Drawing.Size(1195, 38);
             this.FooterGroup.TabIndex = 11;
             this.FooterGroup.TabStop = false;
             // 
@@ -232,7 +236,7 @@
             this.FindBookButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.FindBookButton.BackColor = System.Drawing.SystemColors.Control;
             this.FindBookButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.FindBookButton.Location = new System.Drawing.Point(876, 11);
+            this.FindBookButton.Location = new System.Drawing.Point(879, 11);
             this.FindBookButton.Margin = new System.Windows.Forms.Padding(0);
             this.FindBookButton.Name = "FindBookButton";
             this.FindBookButton.Size = new System.Drawing.Size(146, 27);
@@ -243,6 +247,7 @@
             // 
             // LeftGroup
             // 
+            this.LeftGroup.Controls.Add(this.LeftCancelSearchButton);
             this.LeftGroup.Controls.Add(this.LeftFullPath);
             this.LeftGroup.Controls.Add(this.LeftListView);
             this.LeftGroup.Location = new System.Drawing.Point(0, 23);
@@ -253,6 +258,18 @@
             this.LeftGroup.Enter += new System.EventHandler(this.LeftGroup_Enter);
             this.LeftGroup.Leave += new System.EventHandler(this.LeftGroup_Leave);
             // 
+            // LeftCancelSearchButton
+            // 
+            this.LeftCancelSearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("LeftCancelSearchButton.BackgroundImage")));
+            this.LeftCancelSearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.LeftCancelSearchButton.Location = new System.Drawing.Point(508, 51);
+            this.LeftCancelSearchButton.Name = "LeftCancelSearchButton";
+            this.LeftCancelSearchButton.Size = new System.Drawing.Size(30, 28);
+            this.LeftCancelSearchButton.TabIndex = 20;
+            this.LeftCancelSearchButton.UseVisualStyleBackColor = true;
+            this.LeftCancelSearchButton.Visible = false;
+            this.LeftCancelSearchButton.Click += new System.EventHandler(this.LeftCancelSearchButton_Click);
+            // 
             // LeftFullPath
             // 
             this.LeftFullPath.Location = new System.Drawing.Point(6, 23);
@@ -262,6 +279,7 @@
             // 
             // RightGroup
             // 
+            this.RightGroup.Controls.Add(this.RightCancelSearchButton);
             this.RightGroup.Controls.Add(this.RightFullPath);
             this.RightGroup.Controls.Add(this.RightListView);
             this.RightGroup.Location = new System.Drawing.Point(594, 23);
@@ -271,6 +289,18 @@
             this.RightGroup.TabStop = false;
             this.RightGroup.Enter += new System.EventHandler(this.RightGroup_Enter);
             this.RightGroup.Leave += new System.EventHandler(this.RightGroup_Leave);
+            // 
+            // RightCancelSearchButton
+            // 
+            this.RightCancelSearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("RightCancelSearchButton.BackgroundImage")));
+            this.RightCancelSearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.RightCancelSearchButton.Location = new System.Drawing.Point(544, 51);
+            this.RightCancelSearchButton.Name = "RightCancelSearchButton";
+            this.RightCancelSearchButton.Size = new System.Drawing.Size(30, 28);
+            this.RightCancelSearchButton.TabIndex = 19;
+            this.RightCancelSearchButton.UseVisualStyleBackColor = true;
+            this.RightCancelSearchButton.Visible = false;
+            this.RightCancelSearchButton.Click += new System.EventHandler(this.RightCancelSearchButton_Click);
             // 
             // RightFullPath
             // 
@@ -320,7 +350,7 @@
             // SearchKeyTexBox
             // 
             this.SearchKeyTexBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SearchKeyTexBox.Location = new System.Drawing.Point(594, 10);
+            this.SearchKeyTexBox.Location = new System.Drawing.Point(572, 9);
             this.SearchKeyTexBox.Name = "SearchKeyTexBox";
             this.SearchKeyTexBox.Size = new System.Drawing.Size(553, 26);
             this.SearchKeyTexBox.TabIndex = 14;
@@ -335,6 +365,8 @@
             // 
             // SearchGroupBox
             // 
+            this.SearchGroupBox.Controls.Add(this.CancelDownloadButton);
+            this.SearchGroupBox.Controls.Add(this.DownloadButton);
             this.SearchGroupBox.Controls.Add(this.SearchButton);
             this.SearchGroupBox.Controls.Add(this.BackToExplorerButton);
             this.SearchGroupBox.Controls.Add(this.SearchKeyTexBox);
@@ -342,15 +374,49 @@
             this.SearchGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.SearchGroupBox.Location = new System.Drawing.Point(0, 617);
             this.SearchGroupBox.Name = "SearchGroupBox";
-            this.SearchGroupBox.Size = new System.Drawing.Size(1188, 38);
+            this.SearchGroupBox.Size = new System.Drawing.Size(1195, 38);
             this.SearchGroupBox.TabIndex = 15;
             this.SearchGroupBox.TabStop = false;
             // 
+            // CancelDownloadButton
+            // 
+            this.CancelDownloadButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CancelDownloadButton.BackgroundImage")));
+            this.CancelDownloadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelDownloadButton.Location = new System.Drawing.Point(140, 9);
+            this.CancelDownloadButton.Name = "CancelDownloadButton";
+            this.CancelDownloadButton.Size = new System.Drawing.Size(30, 28);
+            this.CancelDownloadButton.TabIndex = 20;
+            this.CancelDownloadButton.UseVisualStyleBackColor = true;
+            this.CancelDownloadButton.Visible = false;
+            this.CancelDownloadButton.Click += new System.EventHandler(this.CancelDownloadButton_Click);
+            // 
+            // DownloadButton
+            // 
+            this.DownloadButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DownloadButton.BackgroundImage")));
+            this.DownloadButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.DownloadButton.Location = new System.Drawing.Point(1161, 8);
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Size = new System.Drawing.Size(29, 30);
+            this.DownloadButton.TabIndex = 18;
+            this.DownloadButton.UseVisualStyleBackColor = true;
+            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SearchButton.BackgroundImage")));
+            this.SearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SearchButton.Location = new System.Drawing.Point(1127, 8);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(29, 30);
+            this.SearchButton.TabIndex = 17;
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
             // BackToExplorerButton
             // 
-            this.BackToExplorerButton.Location = new System.Drawing.Point(0, 6);
+            this.BackToExplorerButton.Location = new System.Drawing.Point(6, 7);
             this.BackToExplorerButton.Name = "BackToExplorerButton";
-            this.BackToExplorerButton.Size = new System.Drawing.Size(128, 23);
+            this.BackToExplorerButton.Size = new System.Drawing.Size(128, 32);
             this.BackToExplorerButton.TabIndex = 16;
             this.BackToExplorerButton.Text = "Back to explorer";
             this.BackToExplorerButton.UseVisualStyleBackColor = true;
@@ -419,22 +485,11 @@
             this.SettingsButton.Visible = false;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
-            // SearchButton
-            // 
-            this.SearchButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("SearchButton.BackgroundImage")));
-            this.SearchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.SearchButton.Location = new System.Drawing.Point(1153, 8);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(29, 30);
-            this.SearchButton.TabIndex = 17;
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 693);
+            this.ClientSize = new System.Drawing.Size(1195, 693);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.LogOutButton);
@@ -495,6 +550,10 @@
         private System.Windows.Forms.Button BackToExplorerButton;
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Button DownloadButton;
+        private System.Windows.Forms.Button LeftCancelSearchButton;
+        private System.Windows.Forms.Button RightCancelSearchButton;
+        private System.Windows.Forms.Button CancelDownloadButton;
     }
 }
 
