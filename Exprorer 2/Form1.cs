@@ -13,6 +13,7 @@ using System.IO.Compression;
 using Microsoft.VisualBasic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Collections.Concurrent;
 
 namespace Exprorer_2
 {
@@ -681,6 +682,11 @@ namespace Exprorer_2
                     CancelDownloadButton.Visible = false;
                 }
             });
+        }
+        public void PrintInFilesMatches(ConcurrentBag<string> in_files)
+        {
+            PrintSearchInFilesResultForm form = new PrintSearchInFilesResultForm(in_files);
+            form.ShowDialog();
         }
     }
 }

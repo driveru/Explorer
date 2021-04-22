@@ -19,6 +19,7 @@ namespace Exprorer_2
         string source_path;
         bool out_list;
         CancellationTokenSource token;
+        static ConcurrentBag<string> in_files = new ConcurrentBag<string>();
 
         public SearchFiles(string source_path, string srch_key, object form, bool out_list, CancellationTokenSource token_src)
         {
@@ -37,12 +38,13 @@ namespace Exprorer_2
                 MessageBox.Show("Search was stopped");         
             else
                 MessageBox.Show("Search completed");
-
+            
             if (out_list)
                 ((Form1)form).HideLeftCancelSearchButton();
             else
                 ((Form1)form).HideRightCancelSearchButton();
 
+            ((Form1)form).PrintInFilesMatches(in_files);
             token.Dispose();
             //return paths.ToList();
         }
@@ -53,6 +55,14 @@ namespace Exprorer_2
             {
                 foreach (string file_name in Directory.GetFiles(path))
                 {
+                    if (Path.GetExtension(file_name) == ".txt")
+                    {
+                        Task.Factory.StartNew(() =>
+                        {
+                            SearchInFiles(file_name);
+                        });
+                    }
+
                     if (search_key.IsMatch(Path.GetFileName(file_name).ToLower()))
                         ((Form1)form).PrintSearchResults(Path.Combine(path, file_name), out_list);
                     //paths.Add(Path.Combine(path, file_name));
@@ -70,6 +80,16 @@ namespace Exprorer_2
             }
             catch (UnauthorizedAccessException) { return false; }
             catch (OperationCanceledException) { return true; }
+        }
+        private void SearchInFiles(string path)
+        {
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string text = sr.ReadToEnd();
+
+                foreach (Match mch in search_key.Matches(text))
+                    in_files.Add(mch.Value);
+            }
         }
     }
 }
