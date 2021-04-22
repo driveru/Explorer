@@ -49,8 +49,6 @@ namespace Exprorer_2
 
         bool SearchFilesFunc(string path)
         {
-            //Thread.Sleep(new Random().Next(0, 1000));
-            //Console.WriteLine($"Checking {path}");
             try
             {
                 foreach (string file_name in Directory.GetFiles(path))

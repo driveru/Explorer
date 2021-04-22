@@ -21,7 +21,7 @@ namespace Exprorer_2
         {
             InitializeComponent();
             users_data_path = Directory.GetCurrentDirectory();
-            users_data_path = Path.Combine(users_data_path, "users.dat");
+            users_data_path = Path.Combine(users_data_path, "users.txt");
 
             if (File.Exists(users_data_path))
                 using (var fs = File.OpenRead(users_data_path))

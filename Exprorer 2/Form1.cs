@@ -523,9 +523,9 @@ namespace Exprorer_2
 
         private void BackToExplorerButton_Click(object sender, EventArgs e)
         {
-            if (LeftFullPath.Text == "Books")
+            if (LeftFullPath.Text == "Books" || LeftFullPath.Text == "Search results")
                 LeftFullPath.Text = "";
-            if (RightFullPath.Text == "Books")
+            if (RightFullPath.Text == "Books" || LeftFullPath.Text == "Search results")
                 RightFullPath.Text = "";
             UpdateLists();   
             BackToExplorerButton.Visible = false;
@@ -578,6 +578,8 @@ namespace Exprorer_2
         }
         private void Search(string source_dir, string srch_key, bool out_list)
         {
+            BackToExplorerButton.Visible = true;
+
             if (out_list)
                 left_cancellation_src = new CancellationTokenSource();
             else

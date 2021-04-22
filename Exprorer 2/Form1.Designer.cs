@@ -68,6 +68,8 @@
             this.LogOutButton = new System.Windows.Forms.Button();
             this.UserNameLabel = new System.Windows.Forms.Label();
             this.SettingsButton = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.FooterGroup.SuspendLayout();
             this.LeftGroup.SuspendLayout();
             this.RightGroup.SuspendLayout();
@@ -485,11 +487,22 @@
             this.SettingsButton.Visible = false;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "email pattern"});
+            this.comboBox1.Location = new System.Drawing.Point(411, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 693);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.SettingsButton);
             this.Controls.Add(this.UserNameLabel);
             this.Controls.Add(this.LogOutButton);
@@ -554,6 +567,8 @@
         private System.Windows.Forms.Button LeftCancelSearchButton;
         private System.Windows.Forms.Button RightCancelSearchButton;
         private System.Windows.Forms.Button CancelDownloadButton;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

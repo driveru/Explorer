@@ -35,19 +35,30 @@ namespace Exprorer_2
         static public void SaveUsers(Users users)
         {
             string users_data_path = Directory.GetCurrentDirectory();
-            users_data_path = Path.Combine(users_data_path, "users.dat");
+            users_data_path = Path.Combine(users_data_path, "users.txt");
             using (var fs = File.OpenWrite(users_data_path))
                 new BinaryFormatter().Serialize(fs, users);
         }
+        
+        [OnSerializing]
+        private void OnSerializing(StreamingContext context)
+        {
+            foreach (User user in this)
+                user.EncryptPass();
+        }
+
         [OnSerialized]
         private void PrintSuccessMessage(StreamingContext context)
         {
             MessageBox.Show("You signed up successfully. Now you'll try to sign in !");
         }
+
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            MessageBox.Show("Users list successfully restored !");
+            foreach (User user in this)
+                user.DecryptPass();
         }
+        
     }
 }

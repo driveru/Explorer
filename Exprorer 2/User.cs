@@ -16,9 +16,42 @@ namespace Exprorer_2
         public User(string login, string pass)
         {
             this.login = login;
-            this.password = GetHashString(pass);
+            //this.password = GetHashString(pass);
+            this.password = pass;
+        }
+        public void SetExplorerLabel(string new_label)
+        {
+            this.explorer_label = new_label;
         }
 
+        public void EncryptPass()
+        {
+            StringBuilder encrypted = new StringBuilder(this.password.Length);
+
+            foreach (char el in password)
+                encrypted.Append((char)(el ^ 120));
+
+            password = encrypted.ToString();
+        }
+
+        public void DecryptPass()
+        {
+            StringBuilder decrypted = new StringBuilder(password.Length);
+
+            foreach (char el in password.ToString())
+                decrypted.Append((char)(el ^ 120));
+
+            password = decrypted.ToString();
+        }
+        public bool CheckPassword(string pass)
+        {
+            if (pass == password)
+            {
+                return true;
+            }
+            return false;
+        }
+        /*
         public bool CheckPassword(string pass)
         {
             if (GetHashString(pass) == password)
@@ -27,10 +60,7 @@ namespace Exprorer_2
             }
             return false;
         }
-        public void SetExplorerLabel(string new_label)
-        {
-            this.explorer_label = new_label;
-        }
+        
         private string GetHashString(string s)
         {
             //переводим строку в байт-массив  
@@ -51,5 +81,6 @@ namespace Exprorer_2
              
             return hash;
         }
+        */
     }
 }
