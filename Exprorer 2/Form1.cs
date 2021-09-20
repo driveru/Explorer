@@ -688,5 +688,10 @@ namespace Exprorer_2
             PrintSearchInFilesResultForm form = new PrintSearchInFilesResultForm(in_files);
             form.ShowDialog();
         }
+
+        private void FileInfoButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

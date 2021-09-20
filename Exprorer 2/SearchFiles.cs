@@ -83,13 +83,17 @@ namespace Exprorer_2
         }
         private void SearchInFiles(string path)
         {
-            using (StreamReader sr = new StreamReader(path))
+            try
             {
-                string text = sr.ReadToEnd();
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string text = sr.ReadToEnd();
 
-                foreach (Match mch in search_key.Matches(text))
-                    in_files.Add(mch.Value);
+                    foreach (Match mch in search_key.Matches(text))
+                        in_files.Add(mch.Value);
+                }
             }
+            catch (Exception) { }
         }
     }
 }
